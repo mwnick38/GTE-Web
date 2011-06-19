@@ -1,0 +1,134 @@
+@import url("reset.css");
+
+body
+{
+	background: #FFF;
+	color: #111;
+	font-size: 13px;
+	font-family: Ubuntu;
+	float: center;
+}
+
+a { color: #111; text-decoration: none; }
+a:hover { color: #333; text-decoration: none; }
+
+/* Main Styles */
+
+#container
+{
+	margin: 0 auto;
+	width: 1230px;
+	float: center;
+}
+
+	#headercont
+	{
+		width: 1230px;
+		height: 85px;
+	}
+	
+		#headercont h1
+		{
+			padding: 0 0 0px 0;
+			font-weight: normal;
+			font-family: Ubuntu;
+		}
+	
+			#headercont h1 a
+			{
+				font-size: 40px;
+				letter-spacing: 1px;
+			}
+		
+		#headercont p
+		{
+			font-size: 16px;
+			font-family: Ubuntu;
+		}
+		
+	#quotecont
+	{
+		width: 1230px;
+		font-family: Ubuntu;
+		font-size: 29px;
+		line-height: 36px;
+		letter-spacing: 1px;
+	}
+	
+		#quotecont a
+		{
+			color: #111;
+		}
+		
+		#quotecont a:hover
+		{
+			color: #333;
+		}
+	
+	#menucont
+	{
+		width: 1230px;
+		height: 29px;
+		float: center;
+	}
+	
+		#menucont ul
+		{
+			float: center;
+		}
+		
+		#menucont ul li
+		{
+			display: inline;
+			font-family: Ubuntu;
+			float: center;
+		}
+		
+		#menucont ul li a
+		{
+			float: center;
+			line-height: 29px;
+			background: #FFF;
+			color: #111;
+			padding: 5px 5px;
+			margin: 0px 0px 10px 10px;
+			letter-spacing: 1px;
+			font-size: 16px;
+			font-family: Ubuntu;
+		}
+		
+		#menucont ul li a:hover
+		{
+			background: #EEE url("http://www.mattnicklay.com/images/bg-menu-hover.png") repeat-x;
+			color: #FFF;
+		}
+		
+			#menucont ul li.active a
+			{
+				background: #FD3809 url("http://www.mattnicklay.com/images/bg-menu-active.png") repeat-x;
+				color: #FFF;
+			}
+	
+	#maincont
+	{
+		width: 1230px;
+		line-height: 22px;
+		background: url("http://www.mattnicklay.com/images/bg-maincont.gif") repeat-y;
+	}
+
+			#maincont p { margin: 0 0 15px 0; }
+			#maincont h1, #maincont h2, #maincont h3, #maincont h4, #maincont h5 { margin: 0 0 15px 0; font-weight: normal; letter-spacing: 1px; }
+			#maincont h1 { font-size: 24px; }
+			#maincont h2 { font-size: 22px; }
+			#maincont h3 { font-size: 22px; }
+			#maincont h4 { font-size: 20px; }
+			#maincont h5 { font-size: 20px; }
+			
+			#maincont blockquote { background: #EEE; border-left: 3px solid #FD3809; padding: 15px; margin: 0 0 15px 0; font-size: 12px; font-style: italic; line-height: 18px; }
+
+	
+		#maincont #mainleft
+		{
+			float: center;
+			width: 1230px;
+		}
