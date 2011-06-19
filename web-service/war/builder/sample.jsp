@@ -120,19 +120,17 @@
 
 
 			<br><br><h2 class="style1">Sample Games:</h2>
-			<br><h4 class="style3">Right click, save as. Then open the .xml file with the GTE App.</h4><br>
+			<br><h4 class="style3">Right click -> <strong>Save As</strong>. Then, Open the .xml file with the GTE App.</h4><br>
 			<ul>
-				<li><a href="http://userwww.service.emory.edu/~mnickla/games/BattleOfTheSexes.xml">Battle of the Sexes</a></li>
-				<li><a href="http://userwww.service.emory.edu/~mnickla/games/beer_quiche.xml">Beer or Quiche?</a></li>
-				<li><a href="http://userwww.service.emory.edu/~mnickla/games/FudTir_Ex_3.5_Figure_3.15.xml">FudTir_Ex_3.5_Figure_3.15</a></li>
-				<li><a href="http://userwww.service.emory.edu/~mnickla/games/FudTir_Sect_3.6_Fig_3.19.xml">FudTir_Sect_3.6_Fig_3.19</a></li>
-				<li><a href="http://userwww.service.emory.edu/~mnickla/games/FudTir_Sec_4.3.2_Fig_4.2.xml">FudTir_Sec_4.3.2_Fig_4.2</a></li>
-				<li><a href="http://userwww.service.emory.edu/~mnickla/games/GameOfChicken.xml">Game of Chicken</a></li>
-				<li><a href="http://userwww.service.emory.edu/~mnickla/games/GoingToWarAsSignal.xml">Going to War as a Signal</a></li>
-				<li><a href="http://userwww.service.emory.edu/~mnickla/games/Math486_Fig_4.14.xml">Math486_Fig_4.14</a></li>
-				<li><a href="http://userwww.service.emory.edu/~mnickla/games/MoneyBurning.xml">Money Burning Game</a></li>
-				<li><a href="http://userwww.service.emory.edu/~mnickla/games/PhDAdmissionsGame.xml">PhD Admissions Game</a></li>
-				<li><a href="http://userwww.service.emory.edu/~mnickla/games/PrisonersDilemma.xml">Prisoners Dilemma</a></li>
+				<li><a href="/ExampleGames/BattleOfTheSexes.xml">Battle of the Sexes</a></li>
+				<li><a href="/ExampleGames/beer_quiche.xml">Beer or Quiche?</a></li>
+				<li><a href="/ExampleGames/FudTir_Ex_3.5_Figure_3.15.xml">FudTir_Ex_3.5_Figure_3.15</a></li>
+				<li><a href="/ExampleGames/FudTir_Sect_3.6_Fig_3.19.xml">FudTir_Sect_3.6_Fig_3.19</a></li>
+				<li><a href="/ExampleGames/FudTir_Sec_4.3.2_Fig_4.2.xml">FudTir_Sec_4.3.2_Fig_4.2</a></li>
+				<li><a href="/ExampleGames/GoingToWarAsSignal.xml">Going to War as a Signal</a></li>
+				<li><a href="/ExampleGames/MoneyBurning.xml">Money Burning Game</a></li>
+				<li><a href="/ExampleGames/PhDAdmissionsGame.xml">PhD Admissions Game</a></li>
+				<li><a href="/ExampleGames/PrisonersDilemma.xml">Prisoners Dilemma</a></li>
 			</ul>	<br><br>
 
 
