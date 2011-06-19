@@ -55,4 +55,5 @@ IV. DEPLOYMENT
 
 From build dir:
 $ appcfg.sh gte
-(currently requires megesdal's credentials... send email to megesdal@gmail.com to request a deployment)
+
+-> You'll need a Google App Engine account to deploy the app. Create an account at https://appengine.google.com. Then create an app and put the app's name in the appengine-web.xml file located at ~/build/gte/WEB-INF/.
