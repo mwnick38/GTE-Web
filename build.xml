@@ -23,9 +23,16 @@
 	<property name="gui.build.dir" value="${build.dir}/${gui.proj.dir}"/>
 	<property name="gui.test.build.dir" value="${build.dir}/${gui.proj.dir}-test"/>	
 	<property name="war.dir" value="${build.dir}/${war.name}"/>
-	
-	
-	
+
+	<path id="lse.math.games">
+		<pathelement path="${war.dir}/WEB-INF/classes" />
+		<fileset dir="${war.dir}/WEB-INF/lib">
+			<include name="**/*.jar" />
+		</fileset>
+		<fileset dir="${GAE_HOME}/lib">
+			<include name="shared/**/*.jar" />
+		</fileset>
+	</path>	
 	
 	<!-- This is what you have to include to be able to use "mxml" ant task --> 
     <taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />	 	
@@ -114,14 +121,9 @@
 		</junitreport>-->
 	</target>
 	
-	<target name="test-core" depends="compile-core">
+	<target name="test-core" depends="compile-core" description="Compiles Library Tests">
 		<mkdir dir="${lib.test.build.dir}"/>
-		<echo>Compiling Java library tests...</echo>		
-		<javac 
-			srcdir="${lib.test.proj.dir}/src" 
-			destdir="${lib.test.build.dir}"
-			includeAntRuntime="false">
-
+		<javac srcdir="${lib.test.proj.dir}/src" destdir="${lib.test.build.dir}" includeAntRuntime="false">
 			<classpath>
 				<pathelement location="${lib.build.dir}" />
 				<fileset dir="${lib.test.proj.dir}/lib">
@@ -155,50 +157,43 @@
 		<tstamp>
 			<format property="last.mod" pattern="yyyy-MM-dd hh:mm" timezone="GMT"/>
 		</tstamp>
-		<replace file="${war.dir}/builder/index.jsp" token="yyyy-MM-dd hh:mm" value="${last.mod}"/>				
+		<replace file="${war.dir}/index.jsp" token="yyyy-MM-dd hh:mm" value="${last.mod}"/>				
 		
 		<echo>Creating core library JAR file...</echo>
 		<mkdir dir="${war.dir}/WEB-INF/lib"/>		
-		<jar
-			destfile="${war.dir}/WEB-INF/lib/${lib.jar.name}.jar"
-			basedir="${lib.build.dir}"
-			update="true"
-		/>		
+		<jar destfile="${war.dir}/WEB-INF/lib/${lib.jar.name}.jar" basedir="${lib.build.dir}" update="true"/>		
+
+		<copy todir="${war.dir}/WEB-INF/lib" flatten="true">
+			<fileset dir="${GAE_HOME}/lib/user">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+
+		<echo>Compiling Java source and copying other source files to the WAR...</echo>
+		<mkdir dir="${war.dir}/WEB-INF/classes" />
+		<copy todir="${war.dir}/WEB-INF/classes">
+			<fileset dir="${web.proj.dir}/src">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<javac srcdir="${web.proj.dir}/src" destdir="${war.dir}/WEB-INF/classes" classpathref="lse.math.games" debug="on" includeAntRuntime="false" />
 		
 		<echo>Copying GUI flash program to WAR...</echo>
-		<html-wrapper swf="GuiBuilder" express-install="true" output="${gui.build.dir}" height="100%" width="100%" />
-		<copy file="${gui.build.dir}/GuiBuilder.swf" todir="${war.dir}/builder" overwrite="true"/>
-		<copy file="${gui.build.dir}/playerProductInstall.swf" todir="${war.dir}/builder" overwrite="true"/>
-		<copy file="${gui.build.dir}/swfobject.js" todir="${war.dir}/builder" overwrite="true"/>
+		<html-wrapper swf="GuiBuilder" express-install="true" output="${gui.build.dir}" height="100%" width="100%"/>
+		<copy file="${gui.build.dir}/GuiBuilder.swf" todir="${war.dir}" overwrite="true"/>
+		<copy file="${gui.build.dir}/playerProductInstall.swf" todir="${war.dir}" overwrite="true"/>
+		<copy file="${gui.build.dir}/swfobject.js" todir="${war.dir}" overwrite="true"/>
 		
 		<!-- Timestamp the swf to prevent browser caching of the old one -->
-		<replace file="${war.dir}/builder/index.jsp" token="GuiBuilder.swf" value="GuiBuilder-${DSTAMP}${TSTAMP}.swf"/>
-		<move file="${war.dir}/builder/GuiBuilder.swf" tofile="${war.dir}/builder/GuiBuilder-${DSTAMP}${TSTAMP}.swf" />
-		
-		<echo>Compiling WAR class files...</echo>
-		<mkdir dir="${war.dir}/WEB-INF/classes"/>
-		<javac 
-			srcdir="${web.proj.dir}/src" 
-			destdir="${war.dir}/WEB-INF/classes"
-			includeAntRuntime="false">
-			
-			<classpath>
-				<fileset dir="${war.dir}/WEB-INF/lib">
-					<include name="*.jar"/>
-				</fileset>
-				<fileset dir="${GAE_HOME}/lib">
-					<include name="shared/**/*.jar"/>
-					<include name="user/**/*.jar"/>
-				</fileset>
-			</classpath>
-			
-		</javac>
+		<replace file="${war.dir}/index.jsp" token="GuiBuilder.swf" value="GuiBuilder-${DSTAMP}${TSTAMP}.swf"/>
+		<move file="${war.dir}/GuiBuilder.swf" tofile="${war.dir}/GuiBuilder-${DSTAMP}${TSTAMP}.swf" />
 		
 		<echo>Packaging WAR...</echo>
-		<war destfile="${build.dir}/${war.name}.war"
-			webxml="${war.dir}/WEB-INF/web.xml"
-			basedir="${war.dir}">		
+		<war destfile="${build.dir}/${war.name}.war" webxml="${war.dir}/WEB-INF/web.xml" basedir="${war.dir}">		
 		</war>		
-	</target>	
-    
+	</target>
+<!--	<target name="datanucleusenhance" depends="package">
+                <echo>Performing JDO enhancement on compiled data classes...</echo>
+		<enhance_war war="${war.dir}" />
+	</target>-->
 </project>
