@@ -1,23 +1,44 @@
 package lse.math.games.lcp;
 
+//import com.google.appengine.api.datastore.Key;
+
+//import javax.jdo.annotations.IdGeneratorStrategy;
+//import javax.jdo.annotations.PersistenceCapable;
+//import javax.jdo.annotations.Persistent;
+//import javax.jdo.annotations.PrimaryKey;
+
 import java.util.logging.Logger;
 
 import lse.math.games.Rational;
 
-public class LemkeAlgorithm 
-{
-	private static final Logger log = Logger.getLogger(LemkeAlgorithm.class.getName());
+//@PersistenceCapable
+public class LemkeAlgorithm {
+
+    	private static final Logger log = Logger.getLogger(LemkeAlgorithm.class.getName());
+
+//    @PrimaryKey
+//    @Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+//    private Key key;
 	
 	//region State
+//    @Persistent
     private int pivotcount;
+
+//    @Persistent
     private int record_size = 0; /* MP digit record */  //MKE: TODO
+  
+//    @Persistent
     private long duration;
 
     private boolean z0leave;
     
+    // Accessors for the fields. JDO doesn't use these, but GTE does.
     public long getDuration() { return duration; }
     public int getPivotCount() { return pivotcount; } /* no. of Lemke pivot iterations, including the first to pivot z0 in    */
-    public int getRecordDigits() { return record_size; }          
+    public int getRecordDigits() { return record_size; }         
+
+
+ 
     public Tableau A;
     public LexicographicMethod lex; // Performs MinRatio Test
     private LCP origLCP;
@@ -30,6 +51,7 @@ public class LemkeAlgorithm
     public OnTableauChangeDelegate onTableauChange;         //bouttabl
     public OnLexCompleteDelegate onLexComplete;             //blexstats
     public OnLexRayTerminationDelegate onLexRayTermination;
+
 
 
     private void init(LCP lcp)
