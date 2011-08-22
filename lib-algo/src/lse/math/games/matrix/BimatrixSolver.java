@@ -14,10 +14,15 @@ import lse.math.games.lcp.LCP;
 import lse.math.games.lcp.LemkeAlgorithm;
 import lse.math.games.lcp.LemkeAlgorithm.LemkeException;
 
+//@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class BimatrixSolver 
 {	
+   //	@PrimaryKey
+   //	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+   //	private Long id;
 	private static final Logger log = Logger.getLogger(BimatrixSolver.class.getName());
-	
+
+   //	@Persistent	
 	public Rational[] computePriorBeliefs(int size, Random prng)
 	{
 		Rational[] priors = null;
@@ -32,7 +37,8 @@ public class BimatrixSolver
 		}
 		return priors;
 	}
-	
+
+   //	@Persistent	
 	public Equilibrium findOneEquilibrium(LemkeAlgorithm lemke, Rational[][] a, Rational[][] b, Rational[] xPriors, Rational[] yPriors, PrintWriter out)
 		throws LemkeException
 	{	
@@ -68,7 +74,7 @@ public class BimatrixSolver
 		
 		return eq;
 	}	
-	
+   //	@Persistent	
 	public Equilibria findAllEq(Lrs lrs, Rational[][] a, Rational[][] b)
 	{
 		int rows = a.length;
@@ -306,9 +312,9 @@ public class BimatrixSolver
 	
 	private static void generateCovVector(LCP lcp, Rational[] xPriors, Rational[] yPriors)
 	{
-        /* covering vector  = -rhsq */
+        /* covering vector  = element i from random array of integers from 1 to 99 */
         for (int i = 0; i < lcp.size(); i++) {// i < lcpdim
-            lcp.setd(i, lcp.q(i).negate());
+            lcp.setd(i, lcp.randomIntArray(i));       
         }
 
         /* first blockrow += -Aq    */
