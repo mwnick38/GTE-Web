@@ -1,5 +1,13 @@
 package lse.math.games.lcp;
 
+// import javax.jdo.annotations.IdGeneratorStrategy;
+// import javax.jdo.annotations.IdentityType;
+// import javax.jdo.annotations.PersistenceCapable;
+// import javax.jdo.annotations.Persistent;
+// import javax.jdo.annotations.PrimaryKey;
+
+import java.util.Random;
+
 import lse.math.games.Rational;
 import lse.math.games.io.ColumnTextWriter;
 import static lse.math.games.Rational.*;
@@ -15,15 +23,32 @@ import static lse.math.games.Rational.*;
  * (3) is complementarity condition (also written as w = Mz + q where w and z are orthogonal)
  * Lemke algorithm takes this (M, q) and a covering vector (d) and outputs a solution
  */
+
+//@PersistenceCapable(identityType = IdentityType.APPLICATION)
 public class LCP {
+   //	@PrimaryKey
+   //	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+   //	private Long id;
+
 	private static int MAXLCPDIM = 2000;       /* max LCP dimension                       */ //MKE: Why do we need a max?
 
     // M and q define the LCP
+
+    //@Persistent
     Rational[][] M;
+
+    //@Persistent
     Rational[] q;
     
     // d vector for Lemke algo
+
+    //@Persistent
     Rational[] d;
+
+    // random array of integers -- used to test different d vectors.
+
+    //@Persistent
+    Rational[] randomIntArray;
 
     /* allocate and initialize with zero entries an LCP of dimension  n
      * this is the only method changing  lcpdim  
@@ -46,7 +71,6 @@ public class LCP {
                 M[i][j] = Rational.ZERO;
             }
             q[i] = Rational.ZERO;
-            d[i] = Rational.ZERO;
         }
     }
 
@@ -109,9 +133,27 @@ public class LCP {
     public Rational[] d() { return d; }
     public Rational d(int row) { return d[row]; }
     public void setd(int row, Rational value) { d[row] = value; }
-    
+
     public int size() { return d.length; }
-    
+
+
+
+   /*  Defines a random array of integers of equal  length to the covering vector */
+   /*  Elements of this random array are selected from 1 to 99.                   */
+   /*  The array is used by the 'setd' command in the BimatrixSolver.             */
+
+   public int[] randomIntArray(){
+	int[] a = new int[size()];
+	Random generator = new Random();
+	for (int i = 0; i < a.length; i++){
+            a[i] = generator.nextInt(100) + 1;
+	}
+	return a;
+   }
+
+   public Rational randomIntArray(int row) { return randomIntArray[row]; }
+   public void setrandomIntArray(int row, Rational value) { randomIntArray[row] = value; }
+
     @Override
     public String toString()
     {    	
