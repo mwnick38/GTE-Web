@@ -1,5 +1,11 @@
 package lse.math.games.matrix;
 
+// import javax.jdo.annotations.IdGeneratorStrategy;
+// import javax.jdo.annotations.IdentityType;
+// import javax.jdo.annotations.PersistenceCapable;
+// import javax.jdo.annotations.Persistent;
+// import javax.jdo.annotations.PrimaryKey;
+
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Random;
